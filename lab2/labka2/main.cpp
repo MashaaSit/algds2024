@@ -1,10 +1,13 @@
 #include "treap.h"
-
+#include "unit_tests.h"
 int main()
 {
-	srand(time(NULL));
+	srand(time(nullptr));
 
-	struct TreapNode* root = NULL;
+	Test_insert();
+	Test_delete();
+
+	struct TreapNode* root = nullptr;
 	root = insert(root, 50);
 	root = insert(root, 30);
 	root = insert(root, 20);
@@ -13,30 +16,28 @@ int main()
 	root = insert(root, 60);
 	root = insert(root, 80);
 
-	printTreap(root, 0, 7);
 
-	cout << "Inorder traversal of the given tree \n";
+	printf("\nFull treap:\n");
+	printTreap(root, 0, 7);
+	printf("\n\n");
 	inorder(root);
 
-	cout << "\nDelete 20\n";
+	
+	printf("\nDelete 20:\n");
 	root = deleteNode(root, 20);
-	cout << "Inorder traversal of the modified tree \n";
-	inorder(root);
+	printTreap(root, 0, 6);
 
-	cout << "\nDelete 30\n";
-	root = deleteNode(root, 30);
-	cout << "Inorder traversal of the modified tree \n";
-	inorder(root);
+	printf("\nDelete 40:\n");
+	root = deleteNode(root, 40);
+	printTreap(root, 0, 5);
 
-	cout << "\nDelete 50\n";
-	root = deleteNode(root, 50);
-	cout << "Inorder traversal of the modified tree \n";
-	inorder(root);
+	printf("\nDelete 60:\n");
+	root = deleteNode(root, 60);
+	printTreap(root, 0, 4);
 
-	TreapNode* res = search(root, 50);
-	(res == NULL) ? cout << "\n50 Not Found " :
-		cout << "\n50 found";
+	printf("\nDelete 10:\n");
+	root = deleteNode(root, 10);
+	
 
-	printTreap(root, 0, 7);
 	return 0;
 }
